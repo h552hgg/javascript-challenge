@@ -1,61 +1,6 @@
 // from data.js
 var tableData = data;
 
-// YOUR CODE HERE!
-// var Datetime = [];
-// var city =[];
-// var state = [];
-// var country =[];
-// var shape = [];
-// var comment= [];
-// var table_info=[];
-
-
-
-
-// /// Push the values into a table bank 
-// tableData.forEach((tableData) => {
-//     console.log(tableData);
-//     Object.entries(tableData).forEach(([value])=>{
-//         table_info.push(value);
-
-//    });
-// });
-
-// var Datetime_info= tableData.map(x => x.datetime);
-// Datetime.push(Datetime_info);
-// console.log(Datetime);
-//var city_list = tableData.map(city => city.city);
-//var state_list = tableData.map(state => state.state);
-
-
-///First trial for table 
-// // Select the body of the table
-// var tbody = d3.select("tbody");
-// //Select the table 
-// var table = d3.select("table");
-// //Set the class for the table/ attribute
-// table.attr("class","table table-striped");
-// // Iterate through each data entry
-// tableData.forEach(([date,city,state,country,shape,duration,comments]) => {
-//     //Set variable to add rows to the table body
-//     var row = tbody.append("tr");
-
-//     // append the rows
-//     row.append("td").text(date);
-//     row.append("td").text(city);
-//     row.append("td").text(state);
-//     row.append("td").text(country);
-//     row.append("td").text(shape);
-//     row.append("td").text(duration);
-//     row.append("td").text(comments);
-
-
-// });
-
-
-
-
 // Select the table body
 var tbody = d3.select("tbody");
 
@@ -78,10 +23,61 @@ var tbody = d3.select("tbody");
 
 // });
 
+
+// Use the arrow function to loop through the data 
 tableData.forEach((sighting) => {
+    //add to rows
     var row = tbody.append("tr");
+    //Inner loop pull out keys and value
     Object.entries(sighting).forEach(([key, value]) => {
+        //add cells/ table data to row
         var cell = row.append("td");
+        //Use the value for the table data
         cell.text(value);
     });
-    });
+});
+
+///Button/listner section
+
+
+//Select button
+var button = d3.select("#button");
+
+//Select form
+var form = d3.select("#form");
+
+button.on("click", runEnter);
+form.on("submit",runEnter);
+
+
+function runEnter() {
+
+    
+    d3.event.preventDefault();
+    
+
+    var inputElement = d3.select("#datetime");
+  
+    var inputValue = inputElement.property("value");
+  
+    console.log(inputValue);
+    console.log(tableData);
+  
+    var filteredData = tableData.filter(x => x.datetime === inputValue);
+  
+    console.log(filteredData);
+
+
+      
+    // var list = d3.select(".filters");
+
+  
+    // list.html("");
+
+
+    // list.append("li").text(`Mean: ${filteredData}`);
+  
+
+  
+  
+};
