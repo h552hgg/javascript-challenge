@@ -1,11 +1,13 @@
 // from data.js
 var tableData = data;
-
+// select the table 
 var tbody = d3.select("tbody");
 
 
 function runEnter() {
+  // clear the table first
   tbody.html("");
+  //use d3 to select each filter and the input
   var dateValue = d3.select("#datetime").property("value");
   var cityValue = d3.select("#city").property("value");
   var stateValue = d3.select("#state").property("value");
