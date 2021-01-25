@@ -18,6 +18,7 @@ function runEnter() {
 
   // Read data table first to allow the filters to apply
   let filteredData = tableData;
+  // Create if statements for each filter 
   if (dateValue) {
     filteredData = filteredData.filter(x => x.datetime === dateValue);
   }
@@ -33,7 +34,9 @@ function runEnter() {
   if (shapeValue) {
     filteredData = filteredData.filter(x => x.shape === shapeValue);
   }
+  // Console log to verify filtered data
   console.log(filteredData)
+
   filteredData.forEach((sighting) => {
     //add to rows
     var row = tbody.append("tr");
@@ -46,7 +49,7 @@ function runEnter() {
     });
   });
 }
-
+// Create listener for the filter button
 d3.selectAll("#filter-btn").on("click", runEnter);
 
 
