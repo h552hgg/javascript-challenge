@@ -5,8 +5,9 @@ var tableData = data;
 var tbody = d3.select("tbody");
 
 function buildTable(tableData){
-// Use the arrow function to loop through the data 
+    // Clear table 
     tbody.html("");
+    // Use the arrow function to loop through the data 
     tableData.forEach((sighting) => {
         //add to rows
         var row = tbody.append("tr");
@@ -20,26 +21,26 @@ function buildTable(tableData){
     });
 }
 
+
+//Seperate function for the filtering
 function runEnter() {
-
-    
-    // d3.event.preventDefault();
-    
-
-    const inputElement = d3.select("#datetime").property("value");
+    //Use d3 to select values 
+    var inputElement = d3.select("#datetime").property("value");
+    //Pull in the table to filter
     let filteredTable = tableData;
 
-
+    //filter table to match input
     if (inputElement) {
         filteredTable = filteredTable.filter(row => row.datetime === inputElement);
     }
 
-
+    //Return filter table 
     buildTable(filteredTable);
 
 }
 
 d3.selectAll("#filter-btn").on("click", runEnter);
 
+//Return table 
 buildTable(tableData);
 

@@ -13,16 +13,10 @@ form.on("submit",runEnter);
 
 
 function runEnter() {
-
-  d3.event.preventDefault();
-  
-  
-  var inputElement = d3.select("#datetime");
+  tbody.html("");
+  var inputValue = d3.select("#datetime").property("value");
 
   
-  var inputValue = inputElement.property("value");
-
-  console.log(inputValue);
 
 
   var filteredData = tableData.filter(x => x.datetime === inputValue);
@@ -47,3 +41,7 @@ function runEnter() {
   list.append("li").text(`Variance: ${shape}`);
   
 };
+
+
+
+
