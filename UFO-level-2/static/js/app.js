@@ -1,47 +1,52 @@
 // from data.js
 var tableData = data;
 
-
-var button = d3.select("#button");
-
-
-var form = d3.select("#form");
-
-
-button.on("click", runEnter);
-form.on("submit",runEnter);
+var tbody = d3.select("tbody");
 
 
 function runEnter() {
   tbody.html("");
-  var inputValue = d3.select("#datetime").property("value");
-
-  
-
-
-  var filteredData = tableData.filter(x => x.datetime === inputValue);
-
-  console.log(filteredData);
-
- 
-  var city = filteredData.map(x => x.city);
-  var state = filteredData.map(x => x.state);
-  var country = filteredData.map(x => x.county);
-  var shape = filteredData.map(x => x.shape);
-
-  
-  var list = d3.select(".summary");
+  var dateValue = d3.select("#datetime").property("value");
+  var cityValue = d3.select("#city").property("value");
+  var stateValue = d3.select("#state").property("value");
+  var countryValue = d3.select("#country").property("value");
+  var shapeValue = d3.select("#shape").property("value");
 
 
-  list.html("");
 
-  list.append("li").text(`Mean: ${city}`);
-  list.append("li").text(`Median: ${state}`);
-  list.append("li").text(`Mode: ${country}`);
-  list.append("li").text(`Variance: ${shape}`);
-  
+
+  let filteredData = tableData;
+  if (dateValue) {
+    filteredData = filteredData.filter(x => x.datetime === dateValue);
+  }
+  if (cityValue) {
+    filteredData = filteredData.filter(x => x.city === cityValue);
+  }
+
+
+  if (stateValue) {
+    filteredData = filteredData.filter(x => x.state === stateValue);
+  }
+  if (countryValue) {
+    filteredData = filteredData.filter(x => x.country === countryValue);
+  }
+  if (shapeValue) {
+    filteredData = filteredData.filter(x => x.shape === shapeValue);
+  }
+  console.log(filteredData)
+  filteredData.forEach((sighting) => {
+    //add to rows
+    var row = tbody.append("tr");
+    //Inner loop pull out keys and value
+    Object.entries(sighting).forEach(([key, value]) => {
+      //add cells/ table data to row
+      var cell = row.append("td");
+      //Use the value for the table data
+      cell.text(value);
+    });
+  });
 };
 
-
+d3.selectAll("#filter-btn").on("click", runEnter);
 
 
