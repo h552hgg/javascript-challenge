@@ -4,7 +4,7 @@ var tableData = data;
 // Select the table body
 var tbody = d3.select("tbody");
 
-function buildTable(tableData){
+function buildTable(tableData) {
     // Clear table 
     tbody.html("");
     // Use the arrow function to loop through the data 

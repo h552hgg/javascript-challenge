@@ -22,8 +22,6 @@ function runEnter() {
   if (cityValue) {
     filteredData = filteredData.filter(x => x.city === cityValue);
   }
-
-
   if (stateValue) {
     filteredData = filteredData.filter(x => x.state === stateValue);
   }
@@ -45,7 +43,7 @@ function runEnter() {
       cell.text(value);
     });
   });
-};
+}
 
 d3.selectAll("#filter-btn").on("click", runEnter);
 
