@@ -16,7 +16,7 @@ function runEnter() {
 
 
 
-
+  // Read data table first to allow the filters to apply
   let filteredData = tableData;
   if (dateValue) {
     filteredData = filteredData.filter(x => x.datetime === dateValue);
