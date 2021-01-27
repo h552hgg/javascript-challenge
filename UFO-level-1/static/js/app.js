@@ -24,6 +24,9 @@ function buildTable(tableData) {
 
 //Seperate function for the filtering
 function runEnter() {
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+
     //Use d3 to select values 
     var inputElement = d3.select("#datetime").property("value");
     //Pull in the table to filter
